@@ -1,8 +1,3 @@
-/* ========================================================
-   Яндекс Музыка - Чистые стили разблокировки
-   ======================================================== */
-
-/* 1. Полное скрытие черного экрана блокировки (BlockPage) */
 .BlockPage_root__crGK_,
 [class*="BlockPage_root"],
 div[data-name="block-page"] {
@@ -15,7 +10,6 @@ div[data-name="block-page"] {
     overflow: hidden !important;
 }
 
-/* 2. Полное скрытие модалок "Активируйте мульти подписку" и пейволлов */
 .PaywallModal_root__HIYOy,
 [class*="PaywallModal_root"],
 [class*="PaywallModal_backdrop"],
@@ -32,7 +26,6 @@ div[class*="Modal_root"]:has([class*="PlusPromo"]) {
     z-index: -99999 !important;
 }
 
-/* 3. Убираем баннеры "Яндекс Плюс 449 руб" */
 .NavbarDesktopAnimatedPlusBar_root___wH9W,
 .NavbarDesktopAnimatedBar_root__tTyvO,
 [class*="NavbarDesktopAnimatedPlusBar_root"],
@@ -47,7 +40,6 @@ aside [class*="PlusBar"] {
     pointer-events: none !important;
 }
 
-/* 4. Убираем блок фримиума в Моей волне */
 .VibePageFreemiumBlock_root__HCPuh,
 .VibePage_freemiumBlock__uhLoT,
 [class*="VibePageFreemiumBlock_root"],
@@ -60,7 +52,6 @@ aside [class*="PlusBar"] {
     height: 0 !important;
 }
 
-/* 5. Убираем всплывающие ошибки ("Не удалось загрузить часть страницы") */
 .Toastify,
 .Toastify__toast-container,
 .Toastify__toast,
@@ -78,7 +69,6 @@ aside [class*="PlusBar"] {
     transform: translateY(200%) !important;
 }
 
-/* 6. Убираем рекламные баннеры по бокам */
 .SideAdvertBanner_root__hT1jJ,
 [class*="SideAdvertBanner_root"],
 [class*="Content_sideBanner"] {
@@ -88,7 +78,6 @@ aside [class*="PlusBar"] {
     width: 0 !important;
 }
 
-/* 7. Разрешаем естественную прокрутку и видимость всей страницы */
 html, body {
     overflow: auto !important;
     position: static !important;
@@ -106,4 +95,36 @@ main,
     filter: none !important;
     pointer-events: auto !important;
     opacity: 1 !important;
+}
+
+#vibecode-footer-line {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+    z-index: 2147483647;
+    background: rgba(18, 18, 22, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #e0e0e0;
+    pointer-events: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+    user-select: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0.9;
+}
+
+#vibecode-footer-line:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+#vibecode-footer-line .vibecode-highlight {
+    color: #ff334b;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 51, 75, 0.5);
 }
