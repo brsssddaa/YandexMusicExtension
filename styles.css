@@ -18,7 +18,19 @@ div[data-name="block-page"] {
 [data-floating-ui-portal]:has(.Vi7Rd0SZWqD17F0872TB),
 .l66GiFKS1Ux_BNd603Cu.NaZE1NCUxSM1MvpZuLJV[data-floating-ui-inert],
 div[class*="Modal_root"]:has([class*="Paywall"]),
-div[class*="Modal_root"]:has([class*="PlusPromo"]) {
+div[class*="Modal_root"]:has([class*="PlusPromo"]),
+[class*="MobileAppBanner"],
+[class*="MobileAppPromo"],
+[class*="AppPromoModal"],
+[class*="AppPromo_root"],
+[class*="OpenInApp"],
+[class*="InstallApp"],
+[class*="MobilePaywall"],
+[class*="MobileOverlay"],
+[class*="FreemiumFullscreen"],
+[class*="BottomSheet_root"],
+div[class*="Overlay_root"]:has([class*="Plus"]),
+div[class*="Overlay_root"]:has([class*="App"]) {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
