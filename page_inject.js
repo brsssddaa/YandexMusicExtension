@@ -1,9 +1,7 @@
-// Яндекс Музыка - Core Page Injector & State Engine v2.2 (Continuous Resume Engine)
 (function () {
     'use strict';
     const win = window;
 
-    // Диагностический мост для отслеживания событий в реальном времени
     function logEvent() {}
 
     logEvent("CORE_INIT", "Ядро запоминания позиции и разблокировки подписки активно");
@@ -15,7 +13,6 @@
         return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
-    // Хранилище последнего состояния (трек + точная секунда воспроизведения)
     function getResumeState() {
         try {
             const raw = localStorage.getItem('ym_resume_state');
@@ -61,7 +58,6 @@
         } catch(e) {}
     }
 
-    // Периодическое сохранение точной секунды при закрытии/скрытии вкладки
     win.addEventListener('beforeunload', () => {
         if (activeTrack && currentPosition > 0) {
             saveResumeState(activeTrack, currentPosition, currentDuration);
@@ -75,12 +71,10 @@
         }
     });
 
-    // 1. Перехват всех аудио-элементов для 100% точного отслеживания и восстановления секунды
     const _origPlay = HTMLAudioElement.prototype.play;
     HTMLAudioElement.prototype.play = function (...args) {
         const audio = this;
 
-        // Если это первый запуск после открытия сайта и есть сохраненная позиция
         if (!hasRestoredPositionThisSession) {
             const saved = getResumeState();
             if (saved && saved.position > 1) {
@@ -92,7 +86,6 @@
             }
         }
 
-        // Отслеживание секунды воспроизведения в реальном времени
         if (!audio._ym_tracked) {
             audio._ym_tracked = true;
 
@@ -101,7 +94,6 @@
                     currentPosition = audio.currentTime;
                     currentDuration = audio.duration || currentDuration;
 
-                    // Обновляем состояние каждые 2 секунды
                     if (Math.floor(currentPosition) % 2 === 0) {
                         saveResumeState(activeTrack, currentPosition, currentDuration);
                     }
@@ -120,7 +112,6 @@
         return _origPlay.apply(this, args);
     };
 
-    // Быстрый фильтр необходимости патчинга текстовых JSON
     function needsPatch(str) {
         return typeof str === 'string' && (
             str.includes('hasPlus') ||
@@ -165,7 +156,6 @@
         return modified;
     }
 
-    // Рекурсивный патчинг объектов JS в памяти
     function patchObject(obj) {
         if (!obj || typeof obj !== 'object') return obj;
         if (Array.isArray(obj)) {
@@ -199,7 +189,6 @@
         return obj;
     }
 
-    // 2. Быстрый перехват JSON.parse
     const _origParse = win.JSON.parse;
     win.JSON.parse = function (text, reviver) {
         if (needsPatch(text)) {
@@ -208,7 +197,6 @@
         return _origParse.call(this, text, reviver);
     };
 
-    // 3. Перехват Next.js потоковых чанков (__next_f)
     (function hookNextF() {
         const patchChunk = (chunk) => {
             if (Array.isArray(chunk) && typeof chunk[1] === 'string' && needsPatch(chunk[1])) {
@@ -228,7 +216,6 @@
         win.__next_f = existing;
     })();
 
-    // 4. Перехват патчей состояния React (__STATE_PATCHES__)
     (function hookStatePatches() {
         const patchOp = (op) => {
             if (!op || typeof op !== 'object') return;
@@ -276,7 +263,6 @@
         existing.push = patchPush(existing.push.bind(existing));
         win.__STATE_PATCHES__ = existing;
 
-        // Постоянный Plus в стейте
         existing.push([
             { op: "replace", path: "/user/account/data/hasPlus", value: true },
             { op: "replace", path: "/user/account/data/isFreemium", value: false },
@@ -284,7 +270,6 @@
         ]);
     })();
 
-    // 5. Перехват сетевых запросов: восстановление трека в Волну нативно в sequence
     (function hookNetwork() {
         const XHR = win.XMLHttpRequest.prototype;
         const origOpen = XHR.open;
@@ -312,7 +297,6 @@
                 try {
                     const resp = await _origFetch.call(this, input, init);
 
-                    // Если бэкенд отдал ошибку доступа к коллекции (401/403)
                     if ((!resp.ok || resp.status === 401 || resp.status === 403) &&
                         (url.includes('library.jsx') || url.includes('collection.jsx') || url.includes('plus.jsx'))) {
                         return new Response(JSON.stringify({
@@ -337,9 +321,7 @@
                         const data = await origJson();
                         patchObject(data);
 
-                        // Если пришла сессия Моей волны (sequence)
                         if (data && data.result && Array.isArray(data.result.sequence)) {
-                            // Очищаем от рекламы
                             data.result.sequence = data.result.sequence.filter(item => item && item.type !== 'ad' && item.type !== 'upsell');
                             for (const item of data.result.sequence) {
                                 if (item.track) {
@@ -349,12 +331,10 @@
                                 }
                             }
 
-                            // Сохраняем текущий активный трек из первого элемента, если локально еще ничего не сохранено
                             if (!activeTrack && data.result.sequence.length > 0 && data.result.sequence[0].track) {
                                 activeTrack = data.result.sequence[0].track;
                             }
 
-                            // Восстановление последнего игравшего трека в начало очереди волны
                             const saved = getResumeState();
                             if (saved && saved.track && saved.track.id) {
                                 const alreadyFirst = data.result.sequence[0] && data.result.sequence[0].track && data.result.sequence[0].track.id === saved.track.id;
@@ -401,7 +381,6 @@
         }
     })();
 
-    // 6. Подавление ошибок сети в UI
     win.addEventListener('unhandledrejection', (e) => {
         const str = e.reason ? String(e.reason) : '';
         if (str.includes('Failed to fetch') || str.includes('NetworkError') || str.includes('clck') || str.includes('yabs')) {
@@ -409,7 +388,6 @@
         }
     });
 
-    // 7. Деликатная очистка блокировок DOM без вмешательства в структуру React
     function cleanDomElements() {
         document.querySelectorAll('.BlockPage_root__crGK_, [class*="BlockPage_root"], [class*="PaywallModal_root"]').forEach(el => {
             el.style.setProperty('display', 'none', 'important');
@@ -427,7 +405,6 @@
         });
     }
 
-    // 8. Отображение сохраненной секунды и таймкода на индикаторах плеера ДО запуска
     function updatePlayerIndicators() {
         if (hasRestoredPositionThisSession) return;
         const saved = getResumeState();
@@ -436,13 +413,11 @@
         const dur = saved.duration || 180;
         const pos = saved.position;
 
-        // Таймкод (например: 01:23 / 03:45)
         const timecodeEl = document.querySelector('.VibePlayerbarMeta_timecodeOverlay__JhnCy, [class*="VibePlayerbarMeta_timecodeOverlay"]');
         if (timecodeEl && timecodeEl.textContent.includes('00:00 / 00:00')) {
             timecodeEl.textContent = `${formatTime(pos)} / ${formatTime(dur)}`;
         }
 
-        // Полоса прогресса
         const metaRoot = document.querySelector('.VibePlayerbarMeta_root___dH5G, [class*="VibePlayerbarMeta_root"]');
         if (metaRoot) {
             const percent = Math.min(100, Math.max(0, (pos / dur) * 100));
@@ -472,7 +447,6 @@
     if (document.body) startObs();
     else document.addEventListener('DOMContentLoaded', startObs, { once: true });
 
-    // 9. Взаимодействие с externalAPI
     let fullAudio = new Audio();
     fullAudio.preload = "auto";
     let isFullPlaying = false;
@@ -500,7 +474,6 @@
 
             currentDuration = track.duration || currentDuration;
 
-            // Если только что восстановили сессию, берем сохраненную позицию
             const saved = getResumeState();
             if (saved && saved.track && saved.track.id === (track.id || track.trackId) && saved.position > 1) {
                 currentPosition = saved.position;
@@ -535,7 +508,6 @@
             const isPlaying = win.externalAPI.isPlaying();
             logEvent("PLAYER_STATE_CHANGE", { isPlaying: isPlaying });
 
-            // При старте воспроизведения позиционируем на сохраненную секунду
             if (isPlaying && !hasRestoredPositionThisSession) {
                 const saved = getResumeState();
                 if (saved && saved.position > 1) {
@@ -578,7 +550,6 @@
                 hasRestoredPositionThisSession = true;
             }
 
-            // Глушим нативный превью-звук
             document.querySelectorAll('audio').forEach(a => {
                 if (a !== fullAudio) {
                     a.muted = true;
