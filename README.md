@@ -58,4 +58,8 @@ sequenceDiagram
 
 ---
 
+💬 **[Обсуждение и чат пользователей](https://github.com/brsssddaa/YandexMusicExtension/discussions)**
+
+---
+
 Расширение было полностью сделано с помощью вайбкода.
