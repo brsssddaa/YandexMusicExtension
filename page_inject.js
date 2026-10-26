@@ -391,7 +391,10 @@
     });
 
     function cleanDomElements() {
-        document.querySelectorAll('.BlockPage_root__crGK_, [class*="BlockPage_root"], [class*="PaywallModal_root"]').forEach(el => {
+        document.querySelectorAll('.BlockPage_root__crGK_, [class*="BlockPage_root"], [class*="PaywallModal_root"], [class*="WithMobilePaywall"], [class*="paywallContainer"]').forEach(el => {
+            el.style.setProperty('display', 'none', 'important');
+            el.style.setProperty('height', '0', 'important');
+            el.remove();
             el.style.setProperty('display', 'none', 'important');
             el.style.setProperty('visibility', 'hidden', 'important');
             el.style.setProperty('pointer-events', 'none', 'important');

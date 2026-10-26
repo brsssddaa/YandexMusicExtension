@@ -1,6 +1,10 @@
 .BlockPage_root__crGK_,
 [class*="BlockPage_root"],
-div[data-name="block-page"] {
+div[data-name="block-page"],
+.WithMobilePaywall_paywallContainer__Mk1l_,
+[class*="WithMobilePaywall"],
+[class*="paywallContainer"],
+[class*="WithMobilePaywall_paywallContainer"] {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
@@ -8,6 +12,7 @@ div[data-name="block-page"] {
     height: 0 !important;
     width: 0 !important;
     overflow: hidden !important;
+    z-index: -99999 !important;
 }
 
 .PaywallModal_root__HIYOy,
