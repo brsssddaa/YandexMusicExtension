@@ -18,6 +18,17 @@
         "*://music.yandex.ru/*"
       ],
       "js": [
+        "page_inject.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.music.yandex.ru/*",
+        "*://music.yandex.ru/*"
+      ],
+      "js": [
         "content.js"
       ],
       "css": [

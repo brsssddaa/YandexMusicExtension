@@ -1,6 +1,14 @@
 (function () {
     'use strict';
 
+    
+    try {
+        const s = document.createElement("script");
+        s.src = chrome.runtime.getURL("page_inject.js");
+        s.onload = () => s.remove();
+        (document.head || document.documentElement).appendChild(s);
+    } catch(e) {}
+
     function injectVibecodeLine() {
         if (document.getElementById('vibecode-footer-line')) return;
         const line = document.createElement('div');

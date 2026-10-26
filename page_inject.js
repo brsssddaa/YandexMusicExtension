@@ -1,6 +1,8 @@
 (function () {
     'use strict';
     const win = window;
+    if (win.__YM_ENGINE_INITIALIZED__) return;
+    win.__YM_ENGINE_INITIALIZED__ = true;
 
     function logEvent() {}
 
