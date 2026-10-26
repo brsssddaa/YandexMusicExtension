@@ -2,9 +2,8 @@
 [class*="BlockPage_root"],
 div[data-name="block-page"],
 .WithMobilePaywall_paywallContainer__Mk1l_,
-[class*="WithMobilePaywall"],
-[class*="paywallContainer"],
-[class*="WithMobilePaywall_paywallContainer"] {
+div[class*="paywallContainer"],
+div[class*="PaywallContainer"] {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
