@@ -1,36 +1,12 @@
 (function () {
     'use strict';
 
-    
     try {
         const s = document.createElement("script");
         s.src = chrome.runtime.getURL("page_inject.js");
         s.onload = () => s.remove();
         (document.head || document.documentElement).appendChild(s);
     } catch(e) {}
-
-    function injectVibecodeLine() {
-        if (document.getElementById('vibecode-footer-line')) return;
-        const line = document.createElement('div');
-        line.id = 'vibecode-footer-line';
-        line.innerHTML = 'Расширение было полностью сделано с помощью <span class="vibecode-highlight">вайбкода!</span>';
-        if (document.body) {
-            document.body.appendChild(line);
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectVibecodeLine);
-    } else {
-        injectVibecodeLine();
-    }
-
-    const observer = new MutationObserver(() => {
-        if (!document.getElementById('vibecode-footer-line') && document.body) {
-            injectVibecodeLine();
-        }
-    });
-    observer.observe(document.documentElement, { childList: true, subtree: true });
 
     window.addEventListener("message", async (event) => {
         if (!event.data || event.data.source !== "YM_FREE_PAGE") return;

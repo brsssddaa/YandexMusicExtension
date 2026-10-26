@@ -96,35 +96,3 @@ main,
     pointer-events: auto !important;
     opacity: 1 !important;
 }
-
-#vibecode-footer-line {
-    position: fixed;
-    bottom: 84px;
-    right: 20px;
-    z-index: 2147483647;
-    background: rgba(18, 18, 22, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 11px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #e0e0e0;
-    pointer-events: auto;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-    user-select: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    opacity: 0.9;
-}
-
-#vibecode-footer-line:hover {
-    opacity: 1;
-    transform: scale(1.02);
-}
-
-#vibecode-footer-line .vibecode-highlight {
-    color: #ff334b;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 51, 75, 0.5);
-}
