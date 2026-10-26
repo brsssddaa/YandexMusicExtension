@@ -1,0 +1,109 @@
+/* ========================================================
+   Яндекс Музыка - Чистые стили разблокировки
+   ======================================================== */
+
+/* 1. Полное скрытие черного экрана блокировки (BlockPage) */
+.BlockPage_root__crGK_,
+[class*="BlockPage_root"],
+div[data-name="block-page"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 2. Полное скрытие модалок "Активируйте мульти подписку" и пейволлов */
+.PaywallModal_root__HIYOy,
+[class*="PaywallModal_root"],
+[class*="PaywallModal_backdrop"],
+[data-floating-ui-portal]:has([class*="PaywallModal_root"]),
+[data-floating-ui-portal]:has(.PaywallModal_root__HIYOy),
+[data-floating-ui-portal]:has(.Vi7Rd0SZWqD17F0872TB),
+.l66GiFKS1Ux_BNd603Cu.NaZE1NCUxSM1MvpZuLJV[data-floating-ui-inert],
+div[class*="Modal_root"]:has([class*="Paywall"]),
+div[class*="Modal_root"]:has([class*="PlusPromo"]) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    z-index: -99999 !important;
+}
+
+/* 3. Убираем баннеры "Яндекс Плюс 449 руб" */
+.NavbarDesktopAnimatedPlusBar_root___wH9W,
+.NavbarDesktopAnimatedBar_root__tTyvO,
+[class*="NavbarDesktopAnimatedPlusBar_root"],
+[class*="NavbarDesktopPlusBar_root"],
+[class*="NavbarDesktop_plusBar"],
+[class*="SidebarPlusPromo"],
+div[class*="PopoverWithActions_root"],
+div[class*="PlusPromo_root"],
+aside [class*="PlusBar"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 4. Убираем блок фримиума в Моей волне */
+.VibePageFreemiumBlock_root__HCPuh,
+.VibePage_freemiumBlock__uhLoT,
+[class*="VibePageFreemiumBlock_root"],
+[class*="VibePage_freemiumBlock"],
+[class*="VibePage_root_withoutPlus"] [class*="VibePage_freemiumBlock"],
+[class*="VibePage_root_withoutPlus"] [class*="VibePageFreemiumBlock_root"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    height: 0 !important;
+}
+
+/* 5. Убираем всплывающие ошибки ("Не удалось загрузить часть страницы") */
+.Toastify,
+.Toastify__toast-container,
+.Toastify__toast,
+[class*="Toastify"],
+.LayoutNotificationContainers_container__8wnWk,
+[class*="LayoutNotificationContainers_container"],
+[class*="Notification_root"],
+[class*="Toast_root"],
+#ERROR.Toastify,
+#INFO.Toastify {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transform: translateY(200%) !important;
+}
+
+/* 6. Убираем рекламные баннеры по бокам */
+.SideAdvertBanner_root__hT1jJ,
+[class*="SideAdvertBanner_root"],
+[class*="Content_sideBanner"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+}
+
+/* 7. Разрешаем естественную прокрутку и видимость всей страницы */
+html, body {
+    overflow: auto !important;
+    position: static !important;
+}
+
+.page-root,
+main,
+#root,
+[class*="Content_root"],
+[class*="CollectionPage_root"],
+[class*="PlaylistPage_root"],
+[class*="TracksList_root"],
+[class*="VibePage_playerBlock"],
+[class*="VibePlayerBar_root"] {
+    filter: none !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
