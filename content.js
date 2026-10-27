@@ -1,13 +1,16 @@
+// Яндекс Музыка - Content Script (Audio Stream Coordinator & Script Injector)
 (function () {
     'use strict';
 
+    // 1. Надежный инжектор скрипта в главный мир страницы (fallback для мобильных браузеров)
     try {
-        const s = document.createElement("script");
-        s.src = chrome.runtime.getURL("page_inject.js");
-        s.onload = () => s.remove();
+        const s = document.createElement('script');
+        s.src = chrome.runtime.getURL('page_inject.js');
+        s.onload = function () { this.remove(); };
         (document.head || document.documentElement).appendChild(s);
-    } catch(e) {}
+    } catch (e) {}
 
+    // 2. Обработчик сообщений от страницы
     window.addEventListener("message", async (event) => {
         if (!event.data || event.data.source !== "YM_FREE_PAGE") return;
 

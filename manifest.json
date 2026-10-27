@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Яндекс Музыка (Plus Unlock & AdBlock)",
-  "version": "1.0.0",
-  "description": "Слушайте треки в высоком качестве (320 kbps), без рекламы и ограничений на переключение треков.",
+  "version": "1.0.2",
+  "description": "Слушайте треки в высоком качестве (320 kbps), без рекламы и ограничений на переключение треков на ПК и смартфонах.",
   "permissions": [
     "storage",
     "declarativeNetRequest"
@@ -11,7 +11,27 @@
     "*://*.music.yandex.ru/*",
     "*://music.yandex.ru/*"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
   "content_scripts": [
+    {
+      "matches": [
+        "*://*.music.yandex.ru/*",
+        "*://music.yandex.ru/*"
+      ],
+      "js": [
+        "page_inject.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
     {
       "matches": [
         "*://*.music.yandex.ru/*",
