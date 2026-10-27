@@ -41,7 +41,7 @@ sequenceDiagram
 
 ## Установка расширения
 
-### 💻 Для ПК
+### Для ПК
 
 Поддерживаются любые Chromium-браузеры (**Google Chrome**, **Brave**, **Яндекс Браузер**, **Microsoft Edge**, **Opera**).
 
@@ -62,13 +62,17 @@ sequenceDiagram
 
 ---
 
-### 📱 Для телефона
+### Для телефона
 
 > **Важно:** Стандартный мобильный Google Chrome на Android не поддерживает установку расширений.  
 > Для работы на телефоне скачайте **Kiwi Browser** или **Firefox**, так как в них можно ставить расширения!
 
-* **[Скачать Kiwi Browser в Google Play](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser)** *(Рекомендуется — 100% поддержка Chromium-расширений)*
-* **[Скачать Firefox для Android](https://play.google.com/store/apps/details?id=org.mozilla.firefox)**
+* **Kiwi Browser (Рекомендуется):**
+  * [Официальный GitHub (скачать APK)](https://github.com/kiwibrowser/src.chromium/releases)
+  * [Страница на 4PDA](https://4pda.to/forum/index.php?showtopic=928090)
+* **Firefox для Android:**
+  * [Google Play](https://play.google.com/store/apps/details?id=org.mozilla.firefox)
+  * [Официальный сайт Mozilla](https://www.mozilla.org/ru/firefox/browsers/mobile/android/)
 
 #### Инструкция по установке на телефон (на примере Kiwi Browser):
 1. Скачайте архив репозитория на телефон (кнопка **Code** ➔ **Download ZIP** вверху этой страницы).
