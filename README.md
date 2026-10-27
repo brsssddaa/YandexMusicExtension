@@ -64,24 +64,25 @@ sequenceDiagram
 
 ### Для телефона
 
-> **Важно:** Стандартный мобильный Google Chrome на Android не поддерживает установку расширений.  
-> Для работы на телефоне скачайте **Kiwi Browser** или **Firefox**, так как в них можно ставить расширения!
+> **Обратите внимание:** Стандартный мобильный Google Chrome не поддерживает установку расширений, а в обычном Firefox для Android разработчики заблокировали установку сторонних файлов (там доступен только фиксированный список «Рекомендованных» дополнений).  
+> Поэтому на телефоне рекомендуется использовать браузеры на базе Chromium с прямой поддержкой расширений из ZIP-файлов (**Kiwi Browser** или **Lemur Browser**).
+
+#### Где скачать браузер для телефона:
 
 * **Kiwi Browser (Рекомендуется):**
-  * [Официальный GitHub (скачать APK)](https://github.com/kiwibrowser/src.chromium/releases)
-  * [Страница на 4PDA](https://4pda.to/forum/index.php?showtopic=928090)
-* **Firefox для Android:**
-  * [Google Play](https://play.google.com/store/apps/details?id=org.mozilla.firefox)
-  * [Официальный сайт Mozilla](https://www.mozilla.org/ru/firefox/browsers/mobile/android/)
+  * [Официальный GitHub релизов (скачать APK)](https://github.com/kiwibrowser/src.next/releases) *(для большинства смартфонов подходит файл `com.kiwibrowser.browser-arm64-...-github.apk`)*
+  * [Зеркало на Uptodown](https://kiwi-browser.ru.uptodown.com/android)
+* **Lemur Browser (Доступен в Google Play):**
+  * [Скачать в Google Play](https://play.google.com/store/apps/details?id=com.lemurbrowser.exts) *(отличная альтернатива с поддержкой расширений Chrome)*
 
-#### Инструкция по установке на телефон (на примере Kiwi Browser):
+#### Инструкция по установке (на примере Kiwi Browser / Lemur Browser):
 1. Скачайте архив репозитория на телефон (кнопка **Code** ➔ **Download ZIP** вверху этой страницы).
-2. Откройте **Kiwi Browser**.
-3. Нажмите на три точки в верхнем правом углу и выберите пункт **«Расширения»** (или введите в адресную строку `chrome://extensions`).
-4. Включите переключатель **«Режим разработчика»** (Developer mode).
+2. Откройте **Kiwi Browser** (или **Lemur Browser**).
+3. Нажмите меню (три точки) ➔ **«Расширения»** (или введите в адресную строку `chrome://extensions`).
+4. Включите тумблер **«Режим разработчика»** (Developer mode).
 5. Нажмите кнопку **«+ (from .zip/.crx/.user.js)»**.
-6. В открывшемся проводнике перейдите в папку **«Загрузки»** (Download) и выберите скачанный архив `YandexMusicExtension-main.zip`.
-7. Откройте [music.yandex.ru](https://music.yandex.ru/) — мобильная версия сама переключится в полнофункциональный плеер без рекламы и с высоким качеством треков!
+6. Выберите скачанный `.zip` архив из папки «Загрузки» (Download).
+7. Откройте [music.yandex.ru](https://music.yandex.ru/) — плеер готов к работе без ограничений и рекламы!
 
 ---
 
